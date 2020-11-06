@@ -1,0 +1,17 @@
+<div class="container" id="card_top">
+    <div class="card card-body">
+      <div class="spinner-border" role="status" *ngIf="isLoading">
+    </div>
+      <form [formGroup]="signupFormGroup" (submit)="onSignup()" *ngIf="!isLoading">
+          <div class="form-group">
+            <label for="inputText">User Name</label>
+            <input type="text"  class="form-control" formControlName="userName">
+          </div>
+        <div class="form-group">
+          <label for="inputLanguage">Password</label>
+          <input type="password"  class="form-control" formControlName="password">
+        </div>
+       <button class="btn text-white btn-xl text-uppercase float-right" style="background-color: #5fbae9;" type="submit" *ngIf="!isLoading">Sign Up</button>
+       </form>
+    </div>
+    </div>
