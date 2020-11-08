@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  localUrl: "https://hyunsukimresume.herokuapp.com"
 };
