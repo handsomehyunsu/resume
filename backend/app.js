@@ -18,6 +18,7 @@ mongoose.connect("mongodb+srv://test_username:" + process.env.MONGO_ATLAS_PW + "
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/", express.static(path.join(__dirname, "../dist/myResume")));
 
 //CORS 해결하기위한 코드
 app.use((req, res, next) => {
@@ -36,6 +37,8 @@ app.use((req, res, next) => {
 
 app.use("/posts", postsRoutes);
 app.use("/user", userRoutes);
-
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../dist/myResume/index.html"));
+});
 
 module.exports = app;
