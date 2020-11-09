@@ -2,15 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 
+
+
 const path = require('path');
 
+const mongoURL = require('./globalConstantShare/mongodb');
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 
 const app = express();
 
 //mongodb connect
-mongoose.connect("mongodb+srv://test_username:" + process.env.MONGO_ATLAS_PW + "@cluster0.utmlm.mongodb.net/myResume?retryWrites=true&w=majority")
+mongoose.connect(mongoURL)
     .then(() => {
         console.log('connected to database!!');
     })
@@ -22,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "./myResume")));
 
-//CORS 해결하기위한 코드
+// CORS 해결하기위한 코드
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "*");
 //     res.setHeader(
