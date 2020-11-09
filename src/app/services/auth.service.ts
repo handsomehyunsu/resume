@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment.prod';
 // import { environment } from "../../environments/environment";
 import { AuthData } from '../models/auth-data.model';
 
-const postUrl = environment.localUrl + "user/"
+const postUrl = environment.localUrl + "/user/"
 
 
 @Injectable({ providedIn: "root" })
