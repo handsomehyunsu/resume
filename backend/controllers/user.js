@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const jsonwebtoken = require('../globalConstantShare/jsonwebtoken');
 
 const User = require('../models/user');
 
@@ -29,7 +30,7 @@ exports.loginUser = (req, res, next) => {
         .then(user => {
             if(!user){
                 return res.status(401).json({
-                    message: "Auth Failed"
+                    message: "No user information founded!"
                 });
             }
             fetchedUser = user;
@@ -38,12 +39,12 @@ exports.loginUser = (req, res, next) => {
         .then(result => {
             if(!result){
                 return res.status(401).json({
-                    message: "Auth Failed"
+                    message: "Password Failed! "
                 });
             }
             const token = jwt.sign(
                 {userName: fetchedUser.userName, userId: fetchedUser._id},
-                process.env.JWT_KEY,
+                jsonwebtoken,
                 {expiresIn: "1h" }
                 );
                 console.log(fetchedUser);

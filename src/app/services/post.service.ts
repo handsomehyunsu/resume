@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment.prod';
 
 import { Post } from '../models/Post';
 
-const postUrl = environment.localUrl + "/posts"
+const postUrl = environment.localUrl + "/posts/"
 
 @Injectable({
   providedIn: 'root'

@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const path = require('path');
 
 const mongoURL = require('./globalConstantShare/mongodb');
+
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 
