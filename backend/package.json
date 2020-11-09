@@ -1,0 +1,21 @@
+{
+  "name": "my-resume",
+  "version": "0.0.0",
+  "engines": {
+    "node": "~10.16.3",
+    "npm": "~6.14.8"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "private": true,
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.11",
+    "mongoose-unique-validator": "^2.0.3"
+  }
+}
