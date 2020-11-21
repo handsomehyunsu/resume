@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  // localUrl: "http://localhost:3000"
-  localUrl: " https://hyunsukimmyresume.herokuapp.com/"
+   localUrl: "http://localhost:3000"
+  //localUrl: " https://hyunsukimmyresume.herokuapp.com/"
 };
 
 /*

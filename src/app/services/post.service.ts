@@ -4,9 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-// import { environment } from "../../environments/environment";
-import { environment } from '../../environments/environment.prod';
-
+//import { environment } from '../../environments/environment.prod';
+import { environment } from "../../environments/environment";
 
 import { Post } from '../models/Post';
 
@@ -32,6 +31,7 @@ export class PostService {
     .pipe(map((postData) => {
       return postData.posts.map(post => {
         return {
+          category: post.category,
           projectName: post.projectName,
           language: post.language,
           term: post.term,
@@ -53,26 +53,28 @@ export class PostService {
   }
 
   getPost(id: string){
-    return this.http.get<{_id: string, projectName: string, language: string, term: string, description: string, creator: string}>(
+    return this.http.get<{category: string, _id: string, projectName: string, language: string, term: string, description: string, creator: string}>(
       postUrl + id
       );
   }
 
-  addPost(projectName: string, language: string, term: string, description: string){
-    const post: Post = {id: null, projectName: projectName, language: language, term: term, description: description, creator: null};
+  addPost(category: string, projectName: string, language: string, term: string, description: string){
+    const post: Post = {category: category, id: null, projectName: projectName, language: language, term: term, description: description, creator: null};
+    console.log("addPost"+post.category);
     this.http
       .post<{postId: string}>(postUrl, post)
       .subscribe(responseData => {
         const id = responseData.postId;
         post.id = id;
+        console.log("responseData"+post.category);
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
         this.router.navigate(["/"]);
       });
   }
 
-  updatePost(id: string, projectName: string, language: string, term: string, description: string){
-    const post: Post = {id: id, projectName: projectName, language: language, term: term, description: description, creator: null};
+  updatePost(category: string, id: string, projectName: string, language: string, term: string, description: string){
+    const post: Post = {category: category, id: id, projectName: projectName, language: language, term: term, description: description, creator: null};
     this.http.put(postUrl + id, post)
       .subscribe(response => {
         const updatedPosts = [...this.posts];

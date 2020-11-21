@@ -8,7 +8,6 @@ import { ContentFormComponent } from './content-form/content-form.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     ContentsComponent,

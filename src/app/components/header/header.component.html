@@ -4,13 +4,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li *ngIf="!userIsAuthenticated" class="nav-item">
-                    <a class="nav-link js-scroll-trigger" routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
+                    <a class="nav-link js-scroll-trigger mat-subheading-2" routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
                 </li>
                 <li *ngIf="!userIsAuthenticated" class="nav-item">
-                    <a class="nav-link js-scroll-trigger" routerLink="/auth/signup" routerLinkActive="mat-accent">Sign Up</a>
+                    <a class="nav-link js-scroll-trigger mat-subheading-2" routerLink="/auth/signup" routerLinkActive="mat-accent">Sign Up</a>
                 </li>
                 <li *ngIf="userIsAuthenticated" class="nav-item">
-                    <a class="nav-link js-scroll-trigger" (click)="onLogout()">Logout</a>
+                    <a class="nav-link js-scroll-trigger mat-subheading-2" (click)="onLogout()">Logout</a>
                 </li>
             </ul>
         </div>

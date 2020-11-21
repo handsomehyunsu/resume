@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { environment } from '../../environments/environment.prod';
-// import { environment } from "../../environments/environment";
+//import { environment } from '../../environments/environment.prod';
+import { environment } from "../../environments/environment";
 import { AuthData } from '../models/auth-data.model';
 
 const postUrl = environment.localUrl + "/user"
@@ -40,8 +40,9 @@ export class AuthService {
         const authData: AuthData = {userName: userName, password: password};
         this.http.post(postUrl + "/signup", authData)
             .subscribe(() => {
-                this.router.navigate(["/"]);
-            }, error => {
+                this.login(authData.userName, authData.password);
+            }
+            , error => {
                 console.log("auth.service.creatorUser() error");
                 this.authStatusListener.next(false);
             });

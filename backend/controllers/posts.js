@@ -2,6 +2,7 @@ const Post = require('../models/post');
 
 exports.createPost = (req, res, next) => {
     const post = new Post({
+        category: req.body.category,
         projectName: req.body.projectName,
         language: req.body.language,
         term: req.body.term,

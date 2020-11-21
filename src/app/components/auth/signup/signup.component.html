@@ -11,7 +11,14 @@
           <label for="inputLanguage">Password</label>
           <input type="password"  class="form-control" formControlName="password">
         </div>
-       <button class="btn text-white btn-xl text-uppercase float-right" style="background-color: #5fbae9;" type="submit" *ngIf="!isLoading">Sign Up</button>
+        <div class="form-group">
+          <label for="inputLanguage">Key</label>
+          <input type="text"  class="form-control" formControlName="key">
+          <mat-error *ngIf="signupFormGroup.hasError('notMatch')">
+            key do not match
+          </mat-error>
+        </div>
+       <button [disabled]="!signupFormGroup.valid" class="btn text-white btn-xl text-uppercase float-right" style="background-color: #5fbae9;" type="submit" *ngIf="!isLoading">Sign Up</button>
        </form>
     </div>
     </div>

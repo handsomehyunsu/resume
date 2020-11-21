@@ -16,6 +16,7 @@ exports.createUser = (req, res, next) => {
             .then(result => {
                 console.log("여기는되냐?")
                 res.status(201).json({result: result});
+                
             })
             .catch(err => {
                 console.log("여기냐?");

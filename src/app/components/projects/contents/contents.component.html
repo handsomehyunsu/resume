@@ -4,8 +4,8 @@
   <div class="row">
       <img class="col-md-4 rounded-circle img-fluid " src="assets/img/logo.png">
     <div class="col-sm-8">
-      <h1 class="text-secondary">Hyunsu Kim</h1>
-      <h4 class="text-secondary">Web Developer</h4>
+      <h1 class="mat-display-1">Hyunsu Kim</h1>
+      <h4 class="mat-h4">Web Developer</h4>
     </div>
   </div>
 </div>
@@ -13,47 +13,85 @@
 
 <!-- Projects -->
 <section class="page-section bg-light card card-body" id="Projects">
-  <div class="container">
 <div class="container">
   <h2 class="page-section-heading text-center text-uppercase text-secondary">Projects</h2>
- <ul class="list-group list-group-flush" *ngFor="let post of posts">
-    <li class="card card-body mb-1">
-      <div class="row">
-        <div class="col-6"><h2>{{ post.projectName }}</h2></div>
-        <div class="col-6"><h5 class="float-right">{{ post.term }}</h5></div>
+      <div *ngFor="let post of posts">
+        <div *ngIf="post.category == 'project'">
+          <div class="row" id="card_top">
+            <div class="col-6">
+               <h1 class="mat-headline">{{ post.projectName }}</h1>
+            </div>
+            <div class="col-6">
+              <h1 class="float-right">{{ post.term }}</h1>
+            </div>
+          </div>
+            <p class="text-black-50">{{ post.language }}</p>
+            <p class="mat-body-2"> {{ post.description }}</p>          
+           <div *ngIf="userIsAuthenticated && userId === post.creator">
+            <button (click)="onDelete(post.id)" class="btn text-white btn-xl text-uppercase float-right" style="background-color: #5fbae9;">delete</button>
+            <button class="btn text-white btn-xl text-uppercase float-right mr-2" style="background-color: #5fbae9;" [routerLink]="['/edit', post.id]">Edit</button>
+          </div>
+        </div>
       </div>
-      <p class="text-black-50 mb-0">{{ post.language }}</p>
-      <p class="text-black-50 mb-0">{{ post.description }}</p>  
+  </div>
+<div class="container mt-3">
+<a *ngIf="userIsAuthenticated" class="btn text-white btn-xl text-uppercase float-right mt-2" style="background-color: #5fbae9;" routerLink="/create">New Post</a>
+</div>
+</section>
+
+<!-- WorkExperience -->
+<section class="page-section card card-body" id="WorkExperience">
+  <div class="container">
+    <h2 class="page-section-heading text-center text-uppercase text-secondary">Work Experience</h2>
+ <div *ngFor="let post of posts">
+    <div *ngIf="post.category == 'workExp'">
+      <div class="row" id="card_top">
+        <div class="col-6">
+          <h1 class="mat-headline">{{ post.projectName }}</h1>
+        </div>
+        <div class="col-6">
+          <h1 class="float-right">{{ post.term }}</h1>
+        </div>
+      </div>
+      <p class="text-black-50">{{ post.language }}</p>
+      <p class="mat-body-2">{{ post.description }}</p>  
       <div *ngIf="userIsAuthenticated && userId === post.creator">
         <button (click)="onDelete(post.id)" class="btn text-white btn-xl text-uppercase float-right" style="background-color: #5fbae9;">delete</button>
         <button class="btn text-white btn-xl text-uppercase float-right mr-2" style="background-color: #5fbae9;" [routerLink]="['/edit', post.id]">Edit</button>
       </div>
-    </li>
- </ul>
-</div>
-
-<div class="container">
-<!-- <button (click)="showAddPostForm = !showAddPostForm" class="btn text-white btn-xl text-uppercase float-right mt-2" style="background-color: #5fbae9;">New Post</button> -->
-<a *ngIf="userIsAuthenticated" class="btn text-white btn-xl text-uppercase float-right mt-2" style="background-color: #5fbae9;" routerLink="/create">New Post</a>
-</div>
-</div>
+    </div>
+ </div>
+ </div>
+ <div class="container mt-3">
+  <a *ngIf="userIsAuthenticated" class="btn text-white btn-xl text-uppercase float-right mt-2" style="background-color: #5fbae9;" routerLink="/create">New Post</a>
+  </div>
 </section>
 
 <!-- Skills -->
-<section class="page-section card card-body">
+<section class="page-section bg-light card card-body">
   <div class="container">
+    <div class="contatiner">
       <h2 class="page-section-heading text-center text-uppercase text-secondary">Skills</h2>
       <ul class="list-group list-group-flush">
         <li class="card card-body mb-1">
           <div class="row">
-            <div class="col-4"><img class="rounded-sm h-75 float-middle" src="assets/img/java.png"></div>
-            <div class="col-4"><img class="rounded-sm h-75" src="assets/img/nodejs.png" ></div>
-            <div class="col-4"><img class="rounded-sm h-75" src="assets/img/angular.png" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/angular.svg"></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/bootstrap.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/c-sharp.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/css.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/github.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/heroku.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/html.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/java.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/javascript.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/mongodb.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/nodejs.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/npm.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/python.svg" ></div>
+            <div><img class="rounded-sm" id="skills" src="assets/img/typescript.svg" ></div>
           </div>
         </li>
       </ul>
-      <div class="text-center mt-4">
-        <button class="btn text-white btn-xl text-uppercase float-center" style="background-color: #5fbae9;" type="submit">Send Message</button>
-      </div>
+  </div>
   </div>
 </section>

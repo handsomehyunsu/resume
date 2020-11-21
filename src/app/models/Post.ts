@@ -1,4 +1,5 @@
 export interface Post{
+    category: string,
     id: string,
     projectName: string,
     language: string,

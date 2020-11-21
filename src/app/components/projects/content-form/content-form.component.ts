@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, ViewChild } from '@angular/core';
 import { PostService } from '../../../services/post.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 import { Post } from '../../../models/Post';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -11,6 +11,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: './content-form.component.html',
   styleUrls: ['./content-form.component.scss']
 })
+
 export class ContentFormComponent implements OnInit {
   posts: Post[]
   post: Post;
@@ -21,6 +22,7 @@ export class ContentFormComponent implements OnInit {
   postFormGroup : FormGroup;
   // @ViewChild('postForm') form: any; //html에서 사용한 #와 일치해야함
 
+  categories = ['project', 'workExp']
 
   //ActivatedRoute
   //현재 active된 route를 감지하여 파라미터값을 전달받는다.
@@ -31,6 +33,7 @@ export class ContentFormComponent implements OnInit {
 
   ngOnInit(){
     this.postFormGroup = new FormGroup({
+      category : new FormControl(''),
       projectName: new FormControl(''),
       language: new FormControl(''),
       term: new FormControl(''),
@@ -47,6 +50,7 @@ export class ContentFormComponent implements OnInit {
         this.postService.getPost(this.postId).subscribe(postData => {
           this.isLoading = false;
           this.postFormGroup.patchValue({
+            category: postData.category,
             id: postData._id, 
             projectName: postData.projectName,
             language: postData.language,
@@ -65,15 +69,16 @@ export class ContentFormComponent implements OnInit {
 
   onSubmit(){
     this.post = this.postFormGroup.value
-    console.log(this.post);
     if(this.mode === 'create'){
       this.postService.addPost(
+        this.post.category,
         this.post.projectName,
         this.post.language,
         this.post.term,
         this.post.description);
     }else{
       this.postService.updatePost(
+        this.post.category,
         this.postId,
         this.post.projectName,
         this.post.language,
